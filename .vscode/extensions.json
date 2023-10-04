@@ -17,6 +17,7 @@
     "formulahendry.auto-rename-tag",
     "dbaeumer.vscode-eslint",
     "expo.vscode-expo-tools",
-    "Postman.postman-for-vscode"
+    "Postman.postman-for-vscode",
+    "orta.vscode-jest"
   ]
 }

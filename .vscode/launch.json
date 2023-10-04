@@ -9,6 +9,27 @@
       "args": ["--extensionDevelopmentPath=${workspaceFolder}/apps/vscode"],
       "outFiles": ["${workspaceFolder}/apps/vscode/out/**/*.js"],
       "preLaunchTask": "${defaultBuildTask}"
+    },
+    {
+      // This will automatically be used when debugging tests in the api package
+      "type": "node",
+      "name": "vscode-jest-tests.v2.@t4/api",
+      "request": "launch",
+      "runtimeArgs": ["--experimental-vm-modules"],
+      "args": [
+        "--runInBand",
+        "--watchAll=false",
+        "--testTimeout=600000",
+        "--testNamePattern",
+        "${jest.testNamePattern}",
+        "--runTestsByPath",
+        "${jest.testFile}"
+      ],
+      "cwd": "${workspaceFolder}/packages/api",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
+      "program": "${workspaceFolder}/node_modules/jest/bin/jest.js"
     }
   ]
 }
