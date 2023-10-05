@@ -62,6 +62,7 @@
   // This requires installing the pre-release 6.x version of the Jest extension
   "jest.virtualFolders": [
     {
+      "autoRun": "off",
       "name": "@t4/api",
       "rootPath": "packages/api",
       "jestCommandLine": "../../node_modules/jest/bin/jest.js",
