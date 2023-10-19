@@ -2,7 +2,7 @@ name = "t4-api"
 compatibility_date = "2023-09-22"
 send_metrics = false
 node_compat = true
-main = "src/worker.ts"
+main = "src/index.ts"
 account_id = "719e3374c9fabba87860b809acb3c939"
 
 [[d1_databases]]

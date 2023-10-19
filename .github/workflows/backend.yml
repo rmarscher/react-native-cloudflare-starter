@@ -30,6 +30,12 @@ jobs:
       - name: 📥 Monorepo install
         uses: ./.github/actions/pnpm-install
 
+      - name: Run tests
+        run: pnpm --filter @t4/api test
+        env:
+          NO_D1_WARNING: true
+          CI: true
+
       - name: Migrate database
         run: pnpm --filter @t4/api migrate
         env:

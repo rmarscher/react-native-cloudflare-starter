@@ -4,10 +4,10 @@ import { cors } from 'hono/cors'
 import { createContext } from './context'
 import { trpcServer } from '@hono/trpc-server'
 
-type Bindings = {
-  DB: D1Database
+export type Bindings = Env & {
   JWT_VERIFICATION_KEY: string
   APP_URL: string
+  [k: string]: unknown
 }
 
 const app = new Hono<{ Bindings: Bindings }>()

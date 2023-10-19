@@ -7,7 +7,7 @@
     "skipLibCheck": true,
     "strict": true,
     "lib": ["esnext"],
-    "types": ["@cloudflare/workers-types", "node"],
+    "types": ["@cloudflare/workers-types/2023-07-01", "node", "./worker-configuration.d.ts"],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx"
   }

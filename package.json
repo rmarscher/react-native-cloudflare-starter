@@ -42,12 +42,12 @@
     "check-dependency-version-consistency": "^4.1.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.50.0",
-    "miniflare": "3.20230922.0",
     "node-gyp": "^9.4.0",
     "prettier": "^3.0.3",
     "react-native-url-polyfill": "^2.0.0",
     "turbo": "^1.10.14",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "wrangler": "^3.10.1"
   },
   "engines": {
     "node": ">=18.16.1",
