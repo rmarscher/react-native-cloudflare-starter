@@ -50,7 +50,7 @@ jobs:
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
           projectName: ${{ secrets.CF_PROJECT_NAME }}
           directory: .vercel/output/static
-          branch: main
+          branch: master
           wranglerVersion: '3'
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           workingDirectory: apps/next

@@ -1,14 +1,14 @@
-name = "t4-api"
+name = "t4-rm-test-api"
 compatibility_date = "2023-10-16"
 send_metrics = false
 node_compat = true
 main = "src/worker.ts"
-account_id = "719e3374c9fabba87860b809acb3c939"
+account_id = "b0f35235b34e83da001de73148cc561e"
 
 [[d1_databases]]
 binding = "DB"
 database_name = "production"
-database_id = "aa5e3923-0f1b-469a-8bb8-d10fb866efe0"
+database_id = "a6bf9b8b-ab7c-4c8e-8754-c2dd5508f2b9"
 migrations_dir = "migrations"
 
 # The necessary secrets are:
