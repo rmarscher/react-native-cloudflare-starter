@@ -35,10 +35,7 @@
   "devDependencies": {
     "@tamagui/next-plugin": "1.75.9",
     "@types/react": "^18.2.37",
-    "eslint-plugin-next-on-pages": "1.8.3",
-    "eslint": "^8.56.0",
-    "eslint-config-next": "^14.0.4",
     "vercel": "33.0.2",
-    "wrangler": "3.22.2"
+    "wrangler": "3.22.3"
   }
 }
