@@ -1,8 +1,11 @@
+name = "t4-stack"
+compatibility_date = "2023-10-30"
+send_metrics = false
+node_compat = true
+account_id = "b0f35235b34e83da001de73148cc561e"
+route = "app.t4stack.com/*"
+workers_dev = false
+
 [env.preview]
 name = "t4-stack-preview"
 workers_dev = true
-
-[env.production]
-name = "t4-stack"
-route = "app.t4stack.com/*"
-workers_dev = false

@@ -34,7 +34,7 @@ const corsHandler = async (c: Context<{ Bindings: Bindings }>, next: Next) => {
     )
   }
   return await cors({
-    origin: [c.env.APP_URL],
+    origin: (origin) => (origin.endsWith(new URL(c.env.APP_URL).host) ? origin : c.env.APP_URL),
     credentials: true,
     allowMethods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
     // https://hono.dev/middleware/builtin/cors#options
