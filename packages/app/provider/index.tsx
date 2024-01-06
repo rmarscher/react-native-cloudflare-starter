@@ -7,6 +7,7 @@ import { TamaguiProvider } from './tamagui'
 import { TamaguiThemeProvider } from './theme'
 import { ToastViewport } from './toast-viewport'
 import { TRPCProvider } from './trpc'
+import { Provider as JotaiProvider } from 'jotai'
 
 export function Provider({
   children,
@@ -16,20 +17,22 @@ export function Provider({
   initialSession: Session | null
 }) {
   return (
-    <TamaguiThemeProvider>
-      <TamaguiProvider>
-        <SafeAreaProvider>
-          <SolitoImageProvider>
-            <ToastProvider swipeDirection='horizontal' duration={6000} native={['mobile']}>
-              <AuthProvider initialSession={initialSession}>
-                <TRPCProvider>{children}</TRPCProvider>
-                <CustomToast />
-                <ToastViewport />
-              </AuthProvider>
-            </ToastProvider>
-          </SolitoImageProvider>
-        </SafeAreaProvider>
-      </TamaguiProvider>
-    </TamaguiThemeProvider>
+    <JotaiProvider>
+      <TamaguiThemeProvider>
+        <TamaguiProvider>
+          <SafeAreaProvider>
+            <SolitoImageProvider>
+              <ToastProvider swipeDirection='horizontal' duration={6000} native={['mobile']}>
+                <AuthProvider initialSession={initialSession}>
+                  <TRPCProvider>{children}</TRPCProvider>
+                  <CustomToast />
+                  <ToastViewport />
+                </AuthProvider>
+              </ToastProvider>
+            </SolitoImageProvider>
+          </SafeAreaProvider>
+        </TamaguiProvider>
+      </TamaguiThemeProvider>
+    </JotaiProvider>
   )
 }
