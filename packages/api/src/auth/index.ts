@@ -69,7 +69,7 @@ export const getAuthOptions = (appUrl: string, apiUrl: string) => {
     // experimental: {
     //   debugMode: true,
     // },
-  })
+  }
 }
 
 declare module 'lucia' {
