@@ -25,7 +25,7 @@ export type Bindings = Env & {
   [k: string]: unknown
 }
 
-const app = new Hono<{ Bindings: Bindings }>()
+const app = new Hono<{ Bindings: Bindings }>().basePath('/worker')
 
 const corsHandler = async (c: Context<{ Bindings: Bindings }>, next: Next) => {
   if (c.env.APP_URL === undefined) {
@@ -47,6 +47,7 @@ app.use('/trpc/*', corsHandler)
 // Setup TRPC server with context
 app.use('/trpc/*', async (c, next) => {
   return await trpcServer({
+    endpoint: '/worker/trpc',
     router: appRouter,
     createContext: async ({ resHeaders }) => {
       return await createContext(c.env, c, resHeaders)

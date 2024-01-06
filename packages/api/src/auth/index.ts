@@ -4,6 +4,16 @@ import { SessionTable, UserTable } from '../db/schema'
 import { DB } from '../db/client'
 import type { ApiContextProps } from '../context'
 
+export const getRequestOrigin = (request?: Request) => {
+  if (!request) return undefined
+  const originHeader = request.headers.get('origin')
+  const forwardedProtoHeader = request.headers.get('x-forwarded-proto')
+  const forwardedHostHeader = request.headers.get('x-forwarded-host')
+  return originHeader || (forwardedProtoHeader && forwardedHostHeader)
+    ? `${forwardedProtoHeader}://${forwardedHostHeader}`
+    : undefined
+}
+
 /**
  * Lucia's isValidRequestOrigin method will compare the
  * origin of the request to the configured host.
@@ -13,23 +23,10 @@ import type { ApiContextProps } from '../context'
  */
 export const getAllowedOriginHost = (app_url: string, request?: Request) => {
   if (!app_url || !request) return undefined
-  const requestOrigin = request.headers.get('Origin')
+  const requestOrigin = getRequestOrigin(request)
   const requestHost = requestOrigin ? new URL(requestOrigin).host : undefined
   const appHost = new URL(app_url).host
   return requestHost === appHost ? appHost : undefined
-}
-
-export const isCrossDomain = (appUrl?: string, apiUrl?: string) => {
-  if (!appUrl || !apiUrl) return true
-  const appHost = new URL(appUrl).host
-  const apiHost = new URL(apiUrl).host
-  return !apiHost.endsWith(appHost)
-}
-
-export function getCookieOptions(ctx: ApiContextProps) {
-  return isCrossDomain(ctx.env.APP_URL, ctx.env.PUBLIC_API_URL)
-    ? 'HttpOnly; SameSite=None; Secure;'
-    : 'HttpOnly; SameSite=Lax; Secure;'
 }
 
 export const createAuth = (db: DB, appUrl: string, apiUrl: string) => {
@@ -60,8 +57,7 @@ export const getAuthOptions = (appUrl: string, apiUrl: string) => {
       expires: false,
       attributes: {
         secure: true,
-        // This might not work forever https://github.com/lucia-auth/lucia/issues/1320
-        sameSite: isCrossDomain(appUrl, apiUrl) ? ('none' as const) : ('lax' as const),
+        sameSite: 'lax' as const,
       },
     },
 

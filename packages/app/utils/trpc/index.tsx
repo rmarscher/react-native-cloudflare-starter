@@ -37,7 +37,7 @@ export const TRPCProvider: React.FC<{
               'x-enable-tokens': 'true',
             }
           },
-          url: `${getApiUrl()}/trpc`,
+          url: `${getApiUrl()}/worker/trpc`,
         }),
       ],
     })

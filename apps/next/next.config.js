@@ -114,6 +114,17 @@ module.exports = function () {
     compiler: {
       removeConsole: disableBrowserLogs,
     },
+    async rewrites() {
+      return [
+        {
+          source: '/worker/:path*',
+          destination: process.env.NEXT_PUBLIC_API_URL
+            ? `${process.env.NEXT_PUBLIC_API_URL}/worker/:path*`
+            : 'http://localhost:8787/worker/:path*',
+        },
+      ]
+    },
+
   }
 
   for (const plugin of plugins) {

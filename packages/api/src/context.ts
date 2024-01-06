@@ -8,7 +8,7 @@ import type { Context as HonoContext, HonoRequest } from 'hono'
 import type { Lucia } from 'lucia'
 import { verifyRequestOrigin } from 'oslo/request'
 import { verifyToken } from './utils/crypto'
-import { createAuth, getAllowedOriginHost } from './auth'
+import { createAuth, getAllowedOriginHost, getRequestOrigin } from './auth'
 import { getCookie } from 'hono/cookie'
 
 export interface ApiContextProps {
@@ -84,7 +84,7 @@ export const createContext = async (
 
     let authResult: Awaited<ReturnType<typeof auth.validateSession>> | undefined
     if (cookieSessionId && !enableTokens) {
-      const originHeader = context.req.header('origin')
+      const originHeader = getRequestOrigin(context.req.raw)
       const hostHeader = context.req.header('host')
       const allowedOrigin = getAllowedOriginHost(context.env.APP_URL, context.req.raw)
       if (

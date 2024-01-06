@@ -52,7 +52,7 @@ export function TRPCProvider(props: { children: React.ReactNode }) {
               // always try to include cookies
             })
           },
-          url: `${process.env.NEXT_PUBLIC_API_URL}/trpc`,
+          url: `${typeof window !== 'undefined' ? '' : process.env.NEXT_PUBLIC_API_URL}/worker/trpc`,
         }),
       ],
     })
