@@ -6,7 +6,6 @@
     "dev": "next dev",
     "local-build": "TAMAGUI_TARGET=web bun x @cloudflare/next-on-pages --disable-worker-minification",
     "local-serve": "bun x wrangler pages dev .vercel/output/static --port 3000 --compatibility-date 2023-10-30 --compatibility-flag=nodejs_compat",
-    "local": "bun run local-build && bun run local-serve",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
