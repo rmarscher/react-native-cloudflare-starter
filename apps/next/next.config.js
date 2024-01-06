@@ -124,7 +124,6 @@ module.exports = function () {
         },
       ]
     },
-
   }
 
   for (const plugin of plugins) {
