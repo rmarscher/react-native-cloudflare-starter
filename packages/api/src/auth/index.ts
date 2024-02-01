@@ -29,13 +29,10 @@ export const getAllowedOriginHost = (app_url: string, request?: Request) => {
   return requestHost === appHost ? appHost : undefined
 }
 
-export const createAuth = (db: DB, appUrl: string, apiUrl: string) => {
+export const createAuth = (db: DB) => {
   // @ts-ignore Expect type errors because this is D1 and not SQLite... but it works
   const adapter = new DrizzleSQLiteAdapter(db, SessionTable, UserTable)
-  // cast probably only needed until adapter-drizzle is updated
-  const env = !appUrl || appUrl.startsWith('http:') ? 'DEV' : 'PROD'
-  // @ts-ignore the "none" option for sameSite works... but https://github.com/lucia-auth/lucia/issues/1320
-  return new Lucia(adapter as Adapter, {
+  return new Lucia(adapter, {
     getUserAttributes: (data: DatabaseUserAttributes) => {
       return {
         email: data.email || '',
