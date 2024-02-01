@@ -18,9 +18,9 @@ migrations_dir = "migrations"
 # - At 3PM on first day of the month
 # - At 11:59PM on the last weekday of the month
 # crons = [ "*/3 * * * *", "0 15 1 * *", "59 23 LW * *" ]
-# For now, we're using "15 2 0 * *" to delete expired sessions from the database weekly
-# Test locally with "http://localhost:3000/__scheduled?cron=15+2+0+*+*"
-crons = [ "15 2 0 * *" ]
+# For now, we're using "15 2 * * 0" to delete expired sessions from the database weekly
+# Test locally with "http://localhost:8787/__scheduled?cron=15+2+*+*+0"
+crons = [ "15 2 * * 0" ]
 
 
 # The necessary secrets are:

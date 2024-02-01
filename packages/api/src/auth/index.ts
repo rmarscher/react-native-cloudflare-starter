@@ -2,7 +2,6 @@ import { Adapter, Lucia, TimeSpan } from 'lucia'
 import { DrizzleSQLiteAdapter } from '@lucia-auth/adapter-drizzle'
 import { SessionTable, UserTable } from '../db/schema'
 import { DB } from '../db/client'
-import type { ApiContextProps } from '../context'
 
 export const getRequestOrigin = (request?: Request) => {
   if (!request) return undefined
@@ -29,10 +28,11 @@ export const getAllowedOriginHost = (app_url: string, request?: Request) => {
   return requestHost === appHost ? appHost : undefined
 }
 
-export const createAuth = (db: DB) => {
+export const createAuth = (db: DB, appUrl: string) => {
   // @ts-ignore Expect type errors because this is D1 and not SQLite... but it works
   const adapter = new DrizzleSQLiteAdapter(db, SessionTable, UserTable)
-  return new Lucia(adapter, {
+  const env = !appUrl || appUrl.startsWith('http:') ? 'DEV' : 'PROD'
+  return new Lucia(adapter as Adapter, {
     getUserAttributes: (data: DatabaseUserAttributes) => {
       return {
         email: data.email || '',
@@ -48,7 +48,7 @@ export const createAuth = (db: DB) => {
       name: 'auth_session',
       expires: false,
       attributes: {
-        secure: true,
+        secure: env !== 'PROD',
         sameSite: 'lax' as const,
       },
     },
