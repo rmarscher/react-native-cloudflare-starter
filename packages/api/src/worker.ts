@@ -3,7 +3,7 @@ import { appRouter } from '@t4/api/src/router'
 import { cors } from 'hono/cors'
 import { createContext } from '@t4/api/src/context'
 import { trpcServer } from '@hono/trpc-server'
-import { match } from 'ts-pattern'
+import scheduled from './scheduled'
 
 export type Bindings = Env & {
   JWT_VERIFICATION_KEY: string
@@ -58,25 +58,7 @@ app.use('/trpc/*', async (c, next) => {
   })(c, next)
 })
 
-// https://developers.cloudflare.com/workers/runtime-apis/handlers/scheduled/#syntax
-interface ScheduledEvent {
-  cron: string // The value of the Cron Trigger that started the ScheduledEvent
-  type: 'scheduled'
-  scheduledTime: number // milliseconds since epoch
-}
-
 export default {
   ...app,
-  async scheduled(event: ScheduledEvent, env: Bindings) {
-    const ctx = await createContext(env)
-    console.log('Running cron', event.cron)
-    await match({ event, ctx })
-      .with({ event: { cron: '15 2 0 * *' } }, async ({ ctx }) => {
-        await ctx.auth.deleteExpiredSessions()
-        console.log('Deleted expired sessions')
-      })
-      .otherwise(async () => {
-        console.log('Unhandled cron event', event)
-      })
-  },
+  scheduled,
 }
