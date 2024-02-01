@@ -6,7 +6,7 @@ const scheduled: ExportedHandlerScheduledHandler<Bindings> = async (event, env, 
   console.log('Running cron', event.cron)
   const ctx = await createContext(env)
   await match({ event, ctx })
-    .with({ event: { cron: '15 2 * * 0' } }, async ({ ctx }) => {
+    .with({ event: { cron: '15 2 * * sat' } }, async ({ ctx }) => {
       await ctx.auth.deleteExpiredSessions()
       console.log('Deleted expired sessions')
     })
