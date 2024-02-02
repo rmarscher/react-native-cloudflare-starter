@@ -2,7 +2,7 @@ import { Hono, type Context, type Next } from 'hono'
 import { appRouter } from '@t4/api/src/router'
 import { cors } from 'hono/cors'
 import { createContext } from '@t4/api/src/context'
-import { trpcServer } from '@hono/trpc-server'
+import { trpcServer } from './trpc'
 import scheduled from './scheduled'
 
 export type Bindings = Env & {

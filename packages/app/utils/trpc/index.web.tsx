@@ -36,7 +36,6 @@ export function TRPCProvider(props: { children: React.ReactNode }) {
       // https://tanstack.com/query/latest/docs/react/guides/network-mode
       // If you are developing locally, you probably want to enable "always" network mode
       // so that tRPC will make requests to localhost.
-      transformer: superjson,
       links: [
         loggerLink({
           enabled: (opts) =>
@@ -44,6 +43,7 @@ export function TRPCProvider(props: { children: React.ReactNode }) {
             (opts.direction === 'down' && opts.result instanceof Error),
         }),
         httpBatchLink({
+          transformer: superjson,
           fetch(url, options) {
             return fetch(url, {
               ...options,
@@ -52,9 +52,8 @@ export function TRPCProvider(props: { children: React.ReactNode }) {
               // always try to include cookies
             })
           },
-          url: `${
-            typeof window !== 'undefined' ? '' : process.env.NEXT_PUBLIC_API_URL
-          }/worker/trpc`,
+          url: `${typeof window !== 'undefined' ? '' : process.env.NEXT_PUBLIC_API_URL
+            }/worker/trpc`,
         }),
       ],
     })

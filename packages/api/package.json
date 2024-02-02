@@ -17,29 +17,29 @@
     "clean": "rm -rf .turbo node_modules"
   },
   "dependencies": {
-    "@cloudflare/next-on-pages": "1.8.3",
+    "@cloudflare/next-on-pages": "1.8.6",
     "@cloudflare/workers-wasi": "^0.0.5",
     "@hono/trpc-server": "^0.1.0",
-    "@libsql/client": "^0.3.5",
+    "@libsql/client": "^0.4.3",
     "@lucia-auth/adapter-drizzle": "1.0.0",
-    "@trpc/server": "^10.43.2",
+    "@trpc/server": "next",
     "arctic": "1.1.3",
-    "drizzle-orm": "^0.29.0",
+    "drizzle-orm": "^0.29.3",
     "drizzle-valibot": "beta",
-    "hono": "^3.9.2",
+    "hono": "^3.12.10",
     "lucia": "3.0.1",
-    "miniflare": "3.20231218.1",
-    "oslo": "1.0.3",
-    "superjson": "1.13.3",
-    "ts-pattern": "^5.0.5",
-    "valibot": "^0.20.1"
+    "miniflare": "3.20240129.0",
+    "oslo": "1.0.4",
+    "superjson": "2.2.1",
+    "ts-pattern": "^5.0.6",
+    "valibot": "^0.27.1"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "1.8.3",
-    "@cloudflare/workers-types": "^4.20231218.0",
-    "bun-types": "^1.0.11",
-    "drizzle-kit": "^0.20.1",
-    "typescript": "^5.2.2",
-    "wrangler": "3.22.3"
+    "@cloudflare/next-on-pages": "1.8.6",
+    "@cloudflare/workers-types": "^4.20240129.0",
+    "bun-types": "^1.0.25",
+    "drizzle-kit": "^0.20.14",
+    "typescript": "^5.3.3",
+    "wrangler": "3.26.0"
   }
 }

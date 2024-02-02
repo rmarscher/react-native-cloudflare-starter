@@ -27,9 +27,9 @@ export const TRPCProvider: React.FC<{
   const [queryClient] = useState(() => new QueryClient())
   const [trpcClient] = useState(() =>
     trpc.createClient({
-      transformer: superjson,
       links: [
         httpBatchLink({
+          transformer: superjson,
           async headers() {
             const token = getSessionToken()
             return {

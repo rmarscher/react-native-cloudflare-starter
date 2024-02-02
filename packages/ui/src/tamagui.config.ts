@@ -58,6 +58,7 @@ const webFontFamily =
 const headingFont = createFont({
   family: isWeb ? webFontFamily : 'System',
   size: {
+    1: 10,
     2: 12,
     3: 14,
     4: 16,
@@ -69,6 +70,7 @@ const headingFont = createFont({
     10: 48,
   },
   lineHeight: {
+    1: 12,
     2: 14,
     3: 16,
     4: 18,
@@ -123,6 +125,7 @@ const bodyFont = createFont({
     3: 12,
     4: 15,
     5: 24,
+    6: 27,
     7: 30,
     8: 36,
     9: 40,
@@ -139,6 +142,7 @@ const bodyFont = createFont({
     3: 24,
     4: 27,
     5: 36,
+    6: 40,
     7: 45,
     8: 54,
     9: 60,

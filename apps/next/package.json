@@ -12,33 +12,33 @@
     "clean": "git clean -xdf .next node_modules .tamagui"
   },
   "dependencies": {
-    "@cloudflare/next-on-pages": "1.8.3",
-    "@ducanh2912/next-pwa": "^9.7.2",
+    "@cloudflare/next-on-pages": "1.8.6",
+    "@ducanh2912/next-pwa": "^10.2.4",
     "@fullhuman/postcss-purgecss": "^5.0.0",
-    "@supabase/auth-helpers-nextjs": "^0.7.4",
+    "@supabase/auth-helpers-nextjs": "^0.9.0",
     "@supabase/auth-helpers-react": "^0.4.2",
     "@t4/ui": "workspace:*",
-    "@tamagui/next-theme": "1.88.18",
-    "@tsndr/cloudflare-worker-jwt": "2.2.7",
+    "@tamagui/next-theme": "1.88.20",
+    "@tsndr/cloudflare-worker-jwt": "2.4.5",
     "app": "workspace:*",
-    "million": "2.6.4",
-    "next": "14.0.1",
+    "million": "3.0.2",
+    "next": "14.1.0",
     "next-seo": "^6.4.0",
-    "next-superjson-plugin": "^0.5.10",
+    "next-superjson-plugin": "^0.6.1",
     "pattycake": "^0.0.2",
     "postcss": "^8.4.33",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^9.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-native": "^0.72.6",
+    "react-native": "^0.73.3",
     "react-native-web": "^0.19.10",
-    "webpack": "^5.88.2"
+    "webpack": "^5.90.1"
   },
   "devDependencies": {
-    "@tamagui/next-plugin": "1.88.18",
-    "@types/react": "^18.2.37",
-    "vercel": "33.0.2",
-    "wrangler": "3.22.3"
+    "@tamagui/next-plugin": "1.88.20",
+    "@types/react": "^18.2.51",
+    "vercel": "33.4.1",
+    "wrangler": "3.26.0"
   }
 }

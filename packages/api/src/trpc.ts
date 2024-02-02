@@ -1,7 +1,25 @@
+import type { AnyTRPCRouter } from '@trpc/server'
+import type { FetchHandlerRequestOptions } from '@trpc/server/adapters/fetch'
+import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
 import { TRPCError, initTRPC } from '@trpc/server'
+import type { MiddlewareHandler } from 'hono'
 import superJson from 'superjson'
 import { type Context } from './context'
 import { ObjectSchema, ObjectEntries, parse } from 'valibot'
+
+type tRPCOptions = Omit<FetchHandlerRequestOptions<AnyTRPCRouter>, 'req' | 'endpoint'> &
+  Partial<Pick<FetchHandlerRequestOptions<AnyTRPCRouter>, 'endpoint'>>
+
+export const trpcServer = ({ endpoint = '/trpc', ...rest }: tRPCOptions): MiddlewareHandler => {
+  return async (c) => {
+    const res = fetchRequestHandler({
+      ...rest,
+      endpoint,
+      req: c.req.raw,
+    })
+    return res
+  }
+}
 
 const t = initTRPC.context<Context>().create({
   transformer: superJson,
