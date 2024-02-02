@@ -35,12 +35,16 @@ const plugins = [
   withPWA,
   withTamagui({
     appDir: true,
+    emitSingleCSSFile: false,
+    doesMutateThemes: false,
     config: './tamagui.config.ts',
     components: ['tamagui', '@t4/ui'],
     importsWhitelist: ['constants.js', 'colors.js'],
     outputCSS: process.env.NODE_ENV === 'production' ? './public/tamagui.css' : null,
     logTimings: true,
     disableExtraction,
+    enableCSSOptimizations: true,
+    excludeReactNativeWebExports: ['Switch', 'ProgressBar', 'Picker', 'CheckBox', 'Touchable'],
     shouldExtract: (path) => {
       if (path.includes(join('packages', 'app'))) {
         return true
